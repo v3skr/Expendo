@@ -1,20 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import ExpsenseItem from "../ExpenseItem/ExpsenseItem";
+import ExpenseContext from "../../Context/ExpenseContext/ExpenseContext";
 
 const ExpenseList = () => {
+  const expsenseContext = useContext(ExpenseContext);
+  const { expenses } = expsenseContext;
   return (
     <div className="expsenses-list">
-      <ExpsenseItem />
-      <ExpsenseItem />
-      <ExpsenseItem />
-      <ExpsenseItem />
-      <ExpsenseItem />
-      <ExpsenseItem />
-      <ExpsenseItem />
-      <ExpsenseItem />
-      <ExpsenseItem />
-      <ExpsenseItem />
-      <ExpsenseItem />
+      {expenses.map((expense, id) => (
+        <ExpsenseItem expense={expense} key={id} />
+      ))}
     </div>
   );
 };

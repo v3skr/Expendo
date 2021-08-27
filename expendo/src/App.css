@@ -6,8 +6,13 @@
   font-family: "Open Sans", sans-serif;
   color: #000;
 }
-
+#root,
+.App,
+html {
+  height: 100%;
+}
 body {
+  height: 100%;
   background-color: #111;
   color: #fff;
 }
