@@ -13,7 +13,6 @@ body {
 }
 .btn {
   display: inline-block;
-  background-color: red;
   border: none;
   padding: 5px 20px;
   border-radius: 5px;
@@ -23,6 +22,7 @@ body {
   font-weight: 300;
 }
 .btn:hover {
+  box-shadow: none;
   color: #fff;
   transform: scale(1.2);
 }

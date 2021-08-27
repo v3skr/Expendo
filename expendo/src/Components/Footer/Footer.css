@@ -1,0 +1,14 @@
+.footer {
+  height: 100px;
+  background-color: red;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 15px;
+  padding: 0 1rem;
+}
+.footer h1 {
+  font-weight: 400;
+}

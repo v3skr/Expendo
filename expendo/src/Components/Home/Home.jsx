@@ -2,6 +2,7 @@ import React from "react";
 import "./Home.css";
 import LoginCard from "../Logincard/LoginCard";
 import SignUpCard from "../SignUpCard/SignUpCard";
+import Footer from "../Footer/Footer";
 
 const Home = () => {
   return (
@@ -13,6 +14,7 @@ const Home = () => {
         <LoginCard />
         <SignUpCard />
       </div>
+      <Footer />
     </div>
   );
 };
