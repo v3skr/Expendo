@@ -1,0 +1,60 @@
+.expsense-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: #111;
+  border-radius: 15px;
+  margin: 10px;
+  padding: 1rem;
+}
+.expsense-item main {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.expsense-item header {
+  display: flex;
+  justify-content: flex-end;
+}
+.expsense-item h1 {
+  color: #ccc;
+  font-weight: 300;
+}
+.expsense-item main .btn-con {
+  display: flex;
+  flex-direction: column;
+}
+.expsense-item main .btn-con button {
+  margin: 5px 0;
+  width: 100%;
+}
+.expsense-item main .btn-con button:nth-child(2) {
+  background-color: red;
+}
+.expsense-item main .btn-con button:nth-child(2):hover {
+  color: #fff;
+}
+.expsense-item main .btn-con button:nth-child(1) {
+  background-color: rgb(255, 238, 0);
+}
+.expsense-item main .btn-con button:nth-child(1):hover {
+  color: #000;
+}
+@media (max-width: 650px) {
+  .main-info h1 {
+    font-size: 20px;
+  }
+  .expsense-item main {
+    flex-direction: column;
+  }
+  .expsense-item main h1 {
+    margin: 10px 0 0 0;
+  }
+  .expsense-item main .btn-con {
+    margin: 2rem 0 0 0;
+  }
+  .expsense-item main .btn-con button {
+    width: 85%;
+  }
+}

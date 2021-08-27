@@ -26,3 +26,12 @@ body {
   color: #fff;
   transform: scale(1.2);
 }
+.overlay {
+  background-color: #000;
+  opacity: 0.8;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  z-index: 2;
+}
