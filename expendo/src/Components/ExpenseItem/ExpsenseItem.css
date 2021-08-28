@@ -19,6 +19,7 @@
 }
 .expsense-item h1 {
   color: #ccc;
+  padding: 15px 0 0 0;
   font-weight: 300;
 }
 .expsense-item main .btn-con {
@@ -29,16 +30,23 @@
   margin: 5px 0;
   width: 100%;
 }
-.expsense-item main .btn-con button:nth-child(2) {
+.expsense-item main .btn-con .delete {
   background-color: red;
 }
-.expsense-item main .btn-con button:nth-child(2):hover {
+.expsense-item main .btn-con .delete:hover {
   color: #fff;
 }
-.expsense-item main .btn-con button:nth-child(1) {
+.expsense-item main .btn-con .edit,
+.cancel {
   background-color: rgb(255, 238, 0);
 }
-.expsense-item main .btn-con button:nth-child(1):hover {
+.expsense-item main .btn-con .update {
+  background-color: springgreen;
+}
+.expsense-item main .btn-con .update:hover {
+  color: #000;
+}
+.expsense-item main .btn-con .edit:hover {
   color: #000;
 }
 @media (max-width: 650px) {

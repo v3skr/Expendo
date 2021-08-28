@@ -4,16 +4,21 @@ import ExpenseContext from "../../Context/ExpenseContext/ExpenseContext";
 
 const AddExpense = () => {
   let today = new Date().toISOString().slice(0, 10);
-  console.log(today);
-  const expenseContext = useContext(ExpenseContext);
-  const { isAdd, setAdd, addExpense } = expenseContext;
-  const [expense, setExpense] = useState({
+  const initalState = {
     name: "",
     amount: "",
     date: today,
-  });
+    isEdit: false,
+  };
+  const expenseContext = useContext(ExpenseContext);
+  const { isAdd, setAdd, addExpense } = expenseContext;
+  const [expense, setExpense] = useState(initalState);
   const onChange = (e) => {
     setExpense({ ...expense, [e.target.name]: e.target.value });
+  };
+  const onClick = () => {
+    addExpense(expense);
+    setExpense(initalState);
   };
   return (
     isAdd && (
@@ -41,7 +46,7 @@ const AddExpense = () => {
           value={expense.date}
         />
         <div className="btn-con">
-          <button className="btn" onClick={() => addExpense(expense)}>
+          <button className="btn" onClick={onClick}>
             Add Expense
           </button>
         </div>

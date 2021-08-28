@@ -4,7 +4,7 @@ import ExpenseContext from "../../../Context/ExpenseContext/ExpenseContext";
 
 const Navbar = () => {
   const expenseContext = useContext(ExpenseContext);
-  const { setAdd } = expenseContext;
+  const { isAdd, setAdd } = expenseContext;
   return (
     <div className="nav">
       <h1>EXPENDO</h1>
