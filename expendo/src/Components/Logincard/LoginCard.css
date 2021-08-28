@@ -72,4 +72,7 @@
     width: 85%;
     height: 450px;
   }
+  form {
+    width: 100%;
+  }
 }

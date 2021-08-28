@@ -5,8 +5,9 @@ import SignUpCard from "../SignUpCard/SignUpCard";
 import Footer from "../Footer/Footer";
 
 const Home = () => {
+  
   return (
-    <div className="home">
+    <div className="home" >
       <header className="header">
         <h1>Track All Your Expenses In a Few Clickes</h1>
       </header>
