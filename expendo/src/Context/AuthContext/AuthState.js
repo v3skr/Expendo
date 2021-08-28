@@ -4,15 +4,18 @@ import AuthContext from "./AuthContext";
 import AuthReducer from "./AuthReducer";
 import joi from "@hapi/joi";
 import { v4 as uuid } from "uuid";
-import {} from "../../types";
+import { SET_TOKEN } from "../../types";
+import axios from "axios";
 
 const AuthState = (props) => {
-  const initalState = {};
+  const initalState = {
+    user: null,
+  };
   const [state, dsipatch] = useReducer(AuthReducer, initalState);
   const alertContext = useContext(AlertContext);
   const { setAlert } = alertContext;
 
-  const userRegister = (user) => {
+  const userRegister = async (user) => {
     const userRegisterSchema = joi.object({
       Email: joi.string().required().email(),
       password: joi.string().required().min(6),
@@ -24,9 +27,12 @@ const AuthState = (props) => {
       message = message[0] + message.slice(1);
       return setAlert({ type: "err", message: message, id: uuid() });
     }
+    const res = await axios.post("/api/user/register", { user });
+    setAlert({ type: "war", message: res.data.msg, id: uuid() });
+    if (res.data.msg === "user saved") return true;
   };
 
-  const userLogin = (user) => {
+  const userLogin = async (user) => {
     const userLoginSchema = joi.object({
       Email: joi.string().email().required(),
       password: joi.string().min(6).required(),
@@ -37,10 +43,14 @@ const AuthState = (props) => {
       message = message[0] + message.slice(1);
       return setAlert({ type: "err", message: message, id: uuid() });
     }
+    const res = await axios.post("/api/user/login", { user });
+    setAlert({ type: "info", message: "Logged In Successfully", id: uuid() });
+    dsipatch({ type: SET_TOKEN, payload: res.data });
   };
   return (
     <AuthContext.Provider
       value={{
+        user: state.user,
         userRegister,
         userLogin,
       }}

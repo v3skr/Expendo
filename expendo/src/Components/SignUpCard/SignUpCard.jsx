@@ -11,9 +11,15 @@ const SignUpCard = () => {
   });
   const authContext = useContext(AuthContext);
   const { userRegister } = authContext;
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-    userRegister(state);
+    const res = await userRegister(state);
+    if (res)
+      setState({
+        Email: "",
+        password: "",
+        phone: "",
+      });
   };
   const onChange = (e) => {
     setState({ ...state, [e.target.name]: e.target.value });
