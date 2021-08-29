@@ -4,6 +4,7 @@ const connectDB = require("./db");
 connectDB();
 const port = process.env.PORT || 5000;
 app.use("/api/user", require("./routes/User"));
+app.use("/api/user/expenses", require("./routes/Expense"));
 app.use("/api/user/login", require("./routes/userLogin"));
 
 app.listen(port, () => {

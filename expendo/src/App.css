@@ -41,3 +41,11 @@ body {
   top: 0;
   z-index: 2;
 }
+.loading {
+  zoom: 0.5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}

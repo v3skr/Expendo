@@ -9,7 +9,7 @@ router.get("/", UserAuth, (req, res) => {});
 
 router.post("/", async (req, res) => {
   try {
-    const { Email, password, phone } = req.body.user;
+    const { Email, password, phone } = req.body;
     let user = await User.findOne({ Email });
     if (user) res.json({ msg: "Email Taken" });
     user = new User({

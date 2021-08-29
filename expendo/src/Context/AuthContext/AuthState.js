@@ -2,14 +2,17 @@ import React, { useReducer, useContext } from "react";
 import AlertContext from "../AlertContext/AlertContext";
 import AuthContext from "./AuthContext";
 import AuthReducer from "./AuthReducer";
+import { useHistory } from "react-router-dom";
 import joi from "@hapi/joi";
 import { v4 as uuid } from "uuid";
-import { SET_TOKEN } from "../../types";
+import { SET_TOKEN, REMOVE_LOADING, SET_LOADING } from "../../types";
 import axios from "axios";
 
 const AuthState = (props) => {
+  const history = useHistory();
   const initalState = {
     user: null,
+    loading: null,
   };
   const [state, dsipatch] = useReducer(AuthReducer, initalState);
   const alertContext = useContext(AlertContext);
@@ -27,7 +30,7 @@ const AuthState = (props) => {
       message = message[0] + message.slice(1);
       return setAlert({ type: "err", message: message, id: uuid() });
     }
-    const res = await axios.post("/api/user", { user });
+    const res = await axios.post("/api/user", user);
     setAlert({ type: "war", message: res.data.msg, id: uuid() });
     if (res.data.msg === "user saved") return true;
   };
@@ -43,10 +46,14 @@ const AuthState = (props) => {
       message = message[0] + message.slice(1);
       return setAlert({ type: "err", message: message, id: uuid() });
     }
-    const res = await axios.post("/api/user/login", { user });
+    const res = await axios.post("/api/user/login", user);
+    if (res.data.token) {
+      dsipatch({ type: SET_TOKEN, payload: res.data.token });
+      history.push("/expenses");
+    }
     setAlert({ type: res.data.type, message: res.data.msg, id: uuid() });
-    dsipatch({ type: SET_TOKEN, payload: res.data.token });
   };
+
   return (
     <AuthContext.Provider
       value={{

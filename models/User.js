@@ -18,4 +18,4 @@ const userSchema = new mongoose.Schema({
     max: 11,
   },
 });
-module.exports = mongoose.model("User", userSchema);
+module.exports = mongoose.model("User", userSchema, "users");

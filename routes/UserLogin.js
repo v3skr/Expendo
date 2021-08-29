@@ -7,7 +7,7 @@ app.use(express.json());
 
 app.post("/", async (req, res) => {
   try {
-    const { Email, password } = req.body.user;
+    const { Email, password } = req.body;
     let user = await User.findOne({ Email, type: "err" })
       .select("-__v")
       .select("-Email")
@@ -19,11 +19,11 @@ app.post("/", async (req, res) => {
       id: user._id,
     };
     jwt.sign(payload, process.env.jwtKey, { expiresIn: 3600 }, (err, token) => {
-      if (err) return res.json({msg:err.message ,type:"err"});
+      if (err) return res.json({ msg: err.message, type: "err" });
       res.json({ msg: "Successfully Logged in", token, type: "info" });
     });
   } catch (err) {
-    res.json({msg:err.message ,type:"err"});
+    res.json({ msg: err.message, type: "err" });
   }
 });
 

@@ -5,11 +5,21 @@ import {
   REMOVE_EDIT,
   UPDATE,
   DELETE,
+  SET_EXPENSES,
+  SET_LOADING,
+  REMOVE_LOADING,
 } from "../../types";
 const ExpenseReducer = (state, action) => {
   switch (action.type) {
     default:
       return { ...state };
+    case SET_EXPENSES: {
+      action.payload.map((item) => (item.isEdit = false));
+      return {
+        ...state,
+        expenses: action.payload,
+      };
+    }
     case TOGGGLE_EDIT: {
       return {
         ...state,
@@ -63,6 +73,18 @@ const ExpenseReducer = (state, action) => {
       return {
         ...state,
         expenses: state.expenses.filter((item, id) => id !== action.payload),
+      };
+    }
+    case SET_LOADING: {
+      return {
+        ...state,
+        loading: true,
+      };
+    }
+    case REMOVE_LOADING: {
+      return {
+        ...state,
+        loading: false,
       };
     }
   }

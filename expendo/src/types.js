@@ -7,3 +7,6 @@ export const DELETE = "DELETE";
 export const SET_ALERT = "SET_ALERT";
 export const REMOVE_ALERT = "REMOVE_ALERT";
 export const SET_TOKEN = "SET_TOKEN";
+export const SET_EXPENSES = "SET_EXPENSES";
+export const SET_LOADING = "SET_LOADING";
+export const REMOVE_LOADING = "REMOVE_LOADING";

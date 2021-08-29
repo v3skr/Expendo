@@ -1,0 +1,13 @@
+import React from "react";
+import loading from "./logo.gif";
+import "../../App.css";
+
+const Loading = () => {
+  return (
+    <div className="loading">
+      <img src={loading} />
+    </div>
+  );
+};
+
+export default Loading;

@@ -8,6 +8,7 @@ import ExpenseContext from "./Context/ExpenseContext/ExpenseContext";
 import AlertContext from "./Context/AlertContext/AlertContext";
 import Overlay from "./Components/utils/Overlay";
 import Alert from "./Components/utils/Alerts/Alerts";
+import AuthState from "./Context/AuthContext/AuthState";
 
 function App() {
   const expenseContext = useContext(ExpenseContext);
@@ -24,8 +25,10 @@ function App() {
         <Overlay />
         {Alerts.length > 0 && <Alert />}
         <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/expenses" component={Expenses} />
+          <AuthState>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/expenses" component={Expenses} />
+          </AuthState>
         </Switch>
       </Router>
     </div>
