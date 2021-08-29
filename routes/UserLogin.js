@@ -8,18 +8,22 @@ app.use(express.json());
 app.post("/", async (req, res) => {
   try {
     const { Email, password } = req.body.user;
-    let user = await User.findOne({ Email });
-    if (!user) return res.send("Email Not Found");
+    let user = await User.findOne({ Email, type: "err" })
+      .select("-__v")
+      .select("-Email")
+      .select("-phone");
+    if (!user) return res.json({ msg: "Email Not Found", type: "err" });
     const isValid = await bcrypt.compare(password, user.password);
-    if (!isValid) return res.send("Passowrd Incorrect");
+    if (!isValid) return res.json({ msg: "Passowrd Incorrect", type: "err" });
     const payload = {
       id: user._id,
     };
     jwt.sign(payload, process.env.jwtKey, { expiresIn: 3600 }, (err, token) => {
-      res.send(token);
+      if (err) return res.json({msg:err.message ,type:"err"});
+      res.json({ msg: "Successfully Logged in", token, type: "info" });
     });
   } catch (err) {
-    res.send(err.message);
+    res.json({msg:err.message ,type:"err"});
   }
 });
 

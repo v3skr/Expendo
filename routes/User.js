@@ -1,8 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const User = require("../models/User");
-router.use(express.json());
 const bcrypt = require("bcryptjs");
+router.use(express.json());
+const UserAuth = require("../middleware/UserAuth");
+
+router.get("/", UserAuth, (req, res) => {});
 
 router.post("/", async (req, res) => {
   try {

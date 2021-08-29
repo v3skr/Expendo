@@ -27,7 +27,7 @@ const AuthState = (props) => {
       message = message[0] + message.slice(1);
       return setAlert({ type: "err", message: message, id: uuid() });
     }
-    const res = await axios.post("/api/user/register", { user });
+    const res = await axios.post("/api/user", { user });
     setAlert({ type: "war", message: res.data.msg, id: uuid() });
     if (res.data.msg === "user saved") return true;
   };
@@ -44,8 +44,8 @@ const AuthState = (props) => {
       return setAlert({ type: "err", message: message, id: uuid() });
     }
     const res = await axios.post("/api/user/login", { user });
-    setAlert({ type: "info", message: "Logged In Successfully", id: uuid() });
-    dsipatch({ type: SET_TOKEN, payload: res.data });
+    setAlert({ type: res.data.type, message: res.data.msg, id: uuid() });
+    dsipatch({ type: SET_TOKEN, payload: res.data.token });
   };
   return (
     <AuthContext.Provider
