@@ -5,8 +5,6 @@
   height: 100%;
 }
 .add-expense {
-  position: sticky;
-  top: 70px;
   z-index: 3;
   display: grid;
   grid-template-rows: 20px 1fr repeat(3, 80px) 1fr;
@@ -16,9 +14,13 @@
   width: 400px;
   min-height: 450px;
   background-color: #222;
-  margin: 1rem auto;
   border-radius: 5px;
   box-shadow: 1px 1px 15px #000, -1px -1px 15px #000;
+  position: fixed;
+  left: 50%;
+  margin-left: -200px;
+  top: 50%;
+  margin-top: -225px;
 }
 .add-expense header {
   text-align: end;
@@ -115,11 +117,16 @@
   text-align: center;
   color: #fff;
   font-weight: 400;
+  margin: 5rem 0 0 0;
   padding: 2rem 0;
 }
 @media (max-width: 650px) {
   .add-expense {
     width: 90%;
+    left: 50%;
+    margin-left: -45%;
+    top: 50%;
+    margin-top: -300px;
   }
   .expense-input-item {
     width: 100%;

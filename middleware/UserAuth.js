@@ -8,7 +8,7 @@ const UserAuth = (req, res, next) => {
     req.id = result.id;
     next();
   } catch (err) {
-    res.send(err.message);
+    res.json({ msg: err.message, type: "err" });
   }
 };
 

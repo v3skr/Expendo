@@ -3,7 +3,7 @@ import AuthContext from "../../Context/AuthContext/AuthContext";
 import "./LoginCard.css";
 import "../../App.css";
 
-const LoginCard = () => {
+const LoginCard = (props) => {
   const [state, setState] = useState({
     Email: "",
     password: "",

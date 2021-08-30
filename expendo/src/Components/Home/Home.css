@@ -9,6 +9,7 @@
   display: flex;
   justify-content: center;
   padding: 2rem 0;
+  margin: 4rem 0 0 0;
 }
 .card-con {
   display: flex;

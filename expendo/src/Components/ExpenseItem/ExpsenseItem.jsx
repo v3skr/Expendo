@@ -3,7 +3,7 @@ import "./ExpsenseItem.css";
 import EditInput from "../EditInput/EditInput";
 import ExpenseContext from "../../Context/ExpenseContext/ExpenseContext";
 const ExpsenseItem = ({ expense, id }) => {
-  const { name, amount, date, isEdit } = expense;
+  const { name, amount, date, isEdit, _id } = expense;
   const expenseContext = useContext(ExpenseContext);
   const { setEdit, removeEdit, update, deleteExpense } = expenseContext;
   const [state, setState] = useState({
@@ -11,6 +11,7 @@ const ExpsenseItem = ({ expense, id }) => {
     amount,
     date,
     isEdit,
+    _id,
   });
   const onChange = (e) => {
     setState({ ...state, [e.target.name]: e.target.value });
@@ -80,7 +81,7 @@ const ExpsenseItem = ({ expense, id }) => {
               Edit
             </button>
           )}
-          <button className="btn delete" onClick={() => deleteExpense(id)}>
+          <button className="btn delete" onClick={() => deleteExpense(id, _id)}>
             Delete
           </button>
         </div>

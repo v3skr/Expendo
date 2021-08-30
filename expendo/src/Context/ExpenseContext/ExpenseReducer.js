@@ -8,6 +8,7 @@ import {
   SET_EXPENSES,
   SET_LOADING,
   REMOVE_LOADING,
+  REMOVE_TOKEN,
 } from "../../types";
 const ExpenseReducer = (state, action) => {
   switch (action.type) {
@@ -85,6 +86,13 @@ const ExpenseReducer = (state, action) => {
       return {
         ...state,
         loading: false,
+      };
+    }
+    case REMOVE_TOKEN: {
+      localStorage.removeItem("token");
+      return {
+        ...state,
+        isAdd: false,
       };
     }
   }

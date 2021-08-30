@@ -18,7 +18,7 @@ app.post("/", async (req, res) => {
     const payload = {
       id: user._id,
     };
-    jwt.sign(payload, process.env.jwtKey, { expiresIn: 3600 }, (err, token) => {
+    jwt.sign(payload, process.env.jwtKey, { expiresIn: "5s" }, (err, token) => {
       if (err) return res.json({ msg: err.message, type: "err" });
       res.json({ msg: "Successfully Logged in", token, type: "info" });
     });

@@ -2,10 +2,8 @@ import React, { useContext, useEffect } from "react";
 import "./Expenses.css";
 import ExpenseList from "./ExpenseList";
 import Footer from "../Footer/Footer";
-import AddExpense from "./AddExpense";
 import Loading from "../utils/Loading";
 import ExpenseContext from "../../Context/ExpenseContext/ExpenseContext";
-import { load } from "dotenv";
 
 const Expenses = () => {
   const expenseContext = useContext(ExpenseContext);
@@ -23,7 +21,6 @@ const Expenses = () => {
       ) : (
         <div className="expenses">
           {expenses.length > 0 && <h1 className="main-title">Your Expenses</h1>}
-          <AddExpense />
           <ExpenseList style={{ overflow: "hidden" }} />
         </div>
       )}

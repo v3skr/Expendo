@@ -5,7 +5,7 @@ import AuthReducer from "./AuthReducer";
 import { useHistory } from "react-router-dom";
 import joi from "@hapi/joi";
 import { v4 as uuid } from "uuid";
-import { SET_TOKEN, REMOVE_LOADING, SET_LOADING } from "../../types";
+import { SET_TOKEN } from "../../types";
 import axios from "axios";
 
 const AuthState = (props) => {

@@ -1,4 +1,4 @@
-import { SET_TOKEN, SET_LOADING, REMOVE_LOADING } from "../../types";
+import { SET_TOKEN } from "../../types";
 const AuthReducer = (state, action) => {
   switch (action.type) {
     default: {
