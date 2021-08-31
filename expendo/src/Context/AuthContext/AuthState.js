@@ -53,7 +53,6 @@ const AuthState = (props) => {
     }
     setAlert({ type: res.data.type, message: res.data.msg, id: uuid() });
   };
-
   return (
     <AuthContext.Provider
       value={{

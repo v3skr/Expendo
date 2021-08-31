@@ -16,6 +16,10 @@ import {
   SET_LOADING,
   REMOVE_LOADING,
   REMOVE_TOKEN,
+  SET_PROPMT,
+  TOGGLE_OVERLAY,
+  SET_TYPE,
+  SET_PAYLOAD,
 } from "../../types";
 
 const ExpenseState = (props) => {
@@ -23,6 +27,11 @@ const ExpenseState = (props) => {
     expenses: [],
     isAdd: false,
     loading: null,
+    isPropmt: false,
+    isShown: false,
+    type: null,
+    prompt: null,
+    payload: {},
   };
   const [state, dispatch] = useReducer(ExpenseReducer, initalState);
   const setAdd = () => {
@@ -30,9 +39,34 @@ const ExpenseState = (props) => {
   };
   const alertContext = useContext(AlertContext);
   const { setAlert } = alertContext;
-
   const history = useHistory();
+
+  const setType = (type, msg) => {
+    dispatch({ type: SET_TYPE, payload: { type, msg } });
+  };
+  const setPayload = (payload) => {
+    dispatch({ type: SET_PAYLOAD, payload });
+  };
   //ADD EXPENSE
+  const res = (type) => {
+    togglePrompt(false);
+    switch (type) {
+      case DELETE: {
+        return deleteExpense(state.payload.id, state.payload._id);
+      }
+      case REMOVE_TOKEN: {
+        return logOut();
+      }
+    }
+  };
+  //toggle Overlay
+  const toggleOverlay = (res) => {
+    dispatch({ type: TOGGLE_OVERLAY, payload: res });
+  };
+  //show prompt
+  const togglePrompt = async (res) => {
+    dispatch({ type: SET_PROPMT, payload: res });
+  };
   const addExpense = async (expense) => {
     if (!localStorage.token) {
       history.push("/");
@@ -97,7 +131,6 @@ const ExpenseState = (props) => {
       });
       return;
     }
-
     axios.defaults.headers.common["_id"] = _id;
     setLoading();
     const res = await axios.delete("/api/user/expenses");
@@ -126,7 +159,7 @@ const ExpenseState = (props) => {
     removeLoading();
     if (res.data.msg === "jwt expired") {
       history.push("/");
-      dispatch({ type: REMOVE_TOKEN, payload: res.data });
+      dispatch({ type: REMOVE_TOKEN });
       return setAlert({ message: "Token expired", type: res.data.type });
     }
     dispatch({ type: SET_EXPENSES, payload: res.data });
@@ -137,12 +170,25 @@ const ExpenseState = (props) => {
   const removeLoading = () => {
     dispatch({ type: REMOVE_LOADING });
   };
+
+  const logOut = () => {
+    dispatch({ type: REMOVE_TOKEN });
+    setAlert({ message: "You Logged Out", type: "info" });
+    history.push("/");
+  };
   return (
     <ExpenseContext.Provider
       value={{
         expenses: state.expenses,
         isAdd: state.isAdd,
         loading: state.loading,
+        isPropmt: state.isPropmt,
+        isShown: state.isShown,
+        type: state.type,
+        prompt: state.prompt,
+        payload: state.payload,
+        setPayload,
+        toggleOverlay,
         deleteExpense,
         addExpense,
         removeEdit,
@@ -150,6 +196,10 @@ const ExpenseState = (props) => {
         setEdit,
         update,
         loadExpenses,
+        logOut,
+        togglePrompt,
+        res,
+        setType,
       }}
     >
       {props.children}

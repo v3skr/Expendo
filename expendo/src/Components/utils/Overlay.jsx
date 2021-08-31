@@ -4,8 +4,10 @@ import "../../App.css";
 
 const Overlay = () => {
   const expenseContext = useContext(ExpenseContext);
-  const { isAdd, setAdd } = expenseContext;
-  return isAdd && <div className="overlay" onClick={setAdd} />;
+  const { toggleOverlay, isShown } = expenseContext;
+  return (
+    isShown && <div className="overlay" onClick={() => toggleOverlay(false)} />
+  );
 };
 
 export default Overlay;

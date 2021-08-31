@@ -1,11 +1,13 @@
 import React, { useState, useContext, Fragment } from "react";
 import "./ExpsenseItem.css";
+import { DELETE } from "../../types";
 import EditInput from "../EditInput/EditInput";
 import ExpenseContext from "../../Context/ExpenseContext/ExpenseContext";
 const ExpsenseItem = ({ expense, id }) => {
   const { name, amount, date, isEdit, _id } = expense;
   const expenseContext = useContext(ExpenseContext);
-  const { setEdit, removeEdit, update, deleteExpense } = expenseContext;
+  const { setEdit, removeEdit, update, togglePrompt, setType, setPayload } =
+    expenseContext;
   const [state, setState] = useState({
     name,
     amount,
@@ -81,7 +83,14 @@ const ExpsenseItem = ({ expense, id }) => {
               Edit
             </button>
           )}
-          <button className="btn delete" onClick={() => deleteExpense(id, _id)}>
+          <button
+            className="btn delete"
+            onClick={() => {
+              togglePrompt(true);
+              setPayload({ _id, id });
+              setType(DELETE, "Are You Sure You Want To Delete This Expense ?");
+            }}
+          >
             Delete
           </button>
         </div>

@@ -1,0 +1,64 @@
+.propmt-con {
+  position: relative;
+  /* height: 100%;
+  width: 100%; */
+}
+.propmt {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1rem 0;
+  align-items: center;
+  z-index: 3;
+  position: fixed;
+  top: 50%;
+  margin-top: -150px;
+  left: 50%;
+  margin-left: -30%;
+  min-height: 300px;
+  width: 60%;
+  background-color: #222;
+  border-radius: 5px;
+  text-align: center;
+}
+.propmt i {
+  color: #000;
+  background-color: red;
+  border-radius: 50%;
+}
+.propmt h1 {
+  padding: 3rem 10px;
+  font-weight: 300;
+  color: #fff;
+}
+.propmt .btn-con {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.propmt .btn-con button {
+  margin: 5px;
+}
+.propmt .btn-con button:nth-child(1) {
+  background-color: springgreen;
+  color: #000;
+}
+.propmt .btn-con button:nth-child(2) {
+  background-color: red;
+  color: #fff;
+}
+@media (max-width: 600px) {
+  .propmt {
+    top: 50%;
+    margin-top: -85%;
+    margin-left: -45%;
+    width: 90%;
+  }
+  .propmt .btn-con {
+    flex-direction: column;
+    width: 100%;
+  }
+  .propmt .btn-con button {
+    width: 80%;
+  }
+}

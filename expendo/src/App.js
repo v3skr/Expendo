@@ -1,5 +1,5 @@
 import "./App.css";
-import { Fragment, useContext } from "react";
+import React, { Fragment, useContext } from "react";
 import Navbar from "./Components/utils/Navbar/Navbar";
 import Home from "./Components/Home/Home";
 import Expenses from "./Components/Expenses/Expenses";
@@ -10,32 +10,34 @@ import Overlay from "./Components/utils/Overlay";
 import Alert from "./Components/utils/Alerts/Alerts";
 import AuthState from "./Context/AuthContext/AuthState";
 import AddExpense from "./Components/Expenses/AddExpense";
+import Prompt from "./Components/Prompt/Prompt";
 
 function App() {
   const expenseContext = useContext(ExpenseContext);
-  const { isAdd } = expenseContext;
+  const { isShown, isPropmt } = expenseContext;
   const alertContext = useContext(AlertContext);
   const { Alerts } = alertContext;
   return (
-      <div className="App">
-        <Navbar />
-        {isAdd
-          ? (document.body.style.overflow = "hidden")
-          : (document.body.style.overflow = "auto")}
-        <Fragment>
-          <Overlay />
-          <div>
-            <AddExpense />
-          </div>
-        </Fragment>
-        {Alerts.length > 0 && <Alert />}
-        <Switch>
-          <AuthState>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/expenses" component={Expenses} />
-          </AuthState>
-        </Switch>
-      </div>
+    <div className="App">
+      <Navbar />
+      {isShown
+        ? (document.body.style.overflow = "hidden")
+        : (document.body.style.overflow = "auto")}
+      <Fragment>
+        <Overlay />
+        <div>
+          {isPropmt && <Prompt />}
+          <AddExpense />
+        </div>
+      </Fragment>
+      {Alerts.length > 0 && <Alert />}
+      <Switch>
+        <AuthState>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/expenses" component={Expenses} />
+        </AuthState>
+      </Switch>
+    </div>
   );
 }
 

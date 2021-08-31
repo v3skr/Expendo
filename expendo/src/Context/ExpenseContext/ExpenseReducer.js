@@ -9,6 +9,10 @@ import {
   SET_LOADING,
   REMOVE_LOADING,
   REMOVE_TOKEN,
+  SET_PROPMT,
+  TOGGLE_OVERLAY,
+  SET_TYPE,
+  SET_PAYLOAD
 } from "../../types";
 const ExpenseReducer = (state, action) => {
   switch (action.type) {
@@ -24,12 +28,14 @@ const ExpenseReducer = (state, action) => {
     case TOGGGLE_EDIT: {
       return {
         ...state,
+        isShown: !state.isShown,
         isAdd: !state.isAdd,
       };
     }
     case ADD_EXPENSE: {
       return {
         ...state,
+        isShown: false,
         isAdd: !state.isAdd,
         expenses: [...state.expenses, action.payload],
       };
@@ -93,6 +99,34 @@ const ExpenseReducer = (state, action) => {
       return {
         ...state,
         isAdd: false,
+      };
+    }
+    case SET_PROPMT: {
+      return {
+        ...state,
+        isPropmt: action.payload,
+        isShown: action.payload,
+      };
+    }
+    case TOGGLE_OVERLAY: {
+      return {
+        ...state,
+        isAdd: state.isAdd ? !state.isAdd : state.isAdd,
+        isPropmt: state.isPropmt ? !state.isPropmt : state.isPropmt,
+        isShown: action.payload,
+      };
+    }
+    case SET_TYPE: {
+      return {
+        ...state,
+        type: action.payload.type,
+        prompt: action.payload.msg,
+      };
+    }
+    case SET_PAYLOAD: {
+      return {
+        ...state,
+        payload: action.payload,
       };
     }
   }

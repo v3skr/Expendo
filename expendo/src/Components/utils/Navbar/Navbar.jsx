@@ -1,22 +1,26 @@
 import React, { useContext, useEffect } from "react";
 import "./Navbar.css";
-import { useHistory } from "react-router-dom";
 import ExpenseContext from "../../../Context/ExpenseContext/ExpenseContext";
+import { REMOVE_TOKEN } from "../../../types";
 
 const Navbar = () => {
-  const history = useHistory();
-  useEffect(() => {
-    // if (!localStorage.token) history.push("/");
-  }, []);
   const expenseContext = useContext(ExpenseContext);
-  const { setAdd } = expenseContext;
+  const { setAdd, setType, togglePrompt } = expenseContext;
   return (
     <div className="nav">
       <h1>EXPENDO</h1>
       {localStorage.token && (
         <div className="links-con">
           <i
-            className="fas fa-plus"
+            className="fas fa-power-off"
+            style={{ zoom: 1.7 }}
+            onClick={() => {
+              togglePrompt(true);
+              setType(REMOVE_TOKEN, "Are You Sure You Want To Log Out");
+            }}
+          ></i>
+          <i
+            className="fas fa-plus "
             style={{ zoom: 2 }}
             onClick={() => setAdd()}
           ></i>
