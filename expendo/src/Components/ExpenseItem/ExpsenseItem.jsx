@@ -85,6 +85,9 @@ const ExpsenseItem = ({ expense, id }) => {
           )}
           <button
             className="btn delete"
+            style={{
+              color: "#fff",
+            }}
             onClick={() => {
               togglePrompt(true);
               setPayload({ _id, id });

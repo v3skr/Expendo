@@ -1,7 +1,8 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import "./Navbar.css";
 import ExpenseContext from "../../../Context/ExpenseContext/ExpenseContext";
 import { REMOVE_TOKEN } from "../../../types";
+import { useHistory } from "react-router-dom";
 
 const Navbar = () => {
   const expenseContext = useContext(ExpenseContext);
@@ -9,7 +10,7 @@ const Navbar = () => {
   return (
     <div className="nav">
       <h1>EXPENDO</h1>
-      {localStorage.token && (
+      {useHistory().location.pathname === "/expenses" && (
         <div className="links-con">
           <i
             className="fas fa-power-off"

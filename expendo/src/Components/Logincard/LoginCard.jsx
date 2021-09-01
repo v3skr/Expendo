@@ -3,7 +3,7 @@ import AuthContext from "../../Context/AuthContext/AuthContext";
 import "./LoginCard.css";
 import "../../App.css";
 
-const LoginCard = (props) => {
+const LoginCard = () => {
   const [state, setState] = useState({
     Email: "",
     password: "",
@@ -42,7 +42,7 @@ const LoginCard = (props) => {
               onChange={onChange}
             />
           </div>
-          <a href="#">Forgotton Password</a>
+          <a href="/user/passwordreset">Forgotton Password</a>
         </div>
         <div className="btn-con">
           <button className="btn" onClick={onSubmit}>

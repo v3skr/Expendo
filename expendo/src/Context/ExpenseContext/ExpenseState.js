@@ -200,6 +200,8 @@ const ExpenseState = (props) => {
         togglePrompt,
         res,
         setType,
+        setLoading,
+        removeLoading,
       }}
     >
       {props.children}

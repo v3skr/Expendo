@@ -3,15 +3,13 @@ const router = express.Router();
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 router.use(express.json());
-const UserAuth = require("../middleware/UserAuth");
-
-router.get("/", UserAuth, (req, res) => {});
+// const UserAuth = require("../middleware/UserAuth");
 
 router.post("/", async (req, res) => {
   try {
     const { Email, password, phone } = req.body;
     let user = await User.findOne({ Email });
-    if (user) res.json({ msg: "Email Taken" });
+    if (user) return res.json({ msg: "Email Taken" });
     user = new User({
       Email,
       password,

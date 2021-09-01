@@ -8,10 +8,8 @@
   overflow: auto;
   top: 80px;
   margin: auto;
-  color: #fff;
 }
 .alert-item {
-  color: #fff !important;
   width: 60%;
   margin: 1rem auto 0 auto;
   padding: 10px 0;
