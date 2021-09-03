@@ -13,6 +13,7 @@ import AddExpense from "./Components/Expenses/AddExpense";
 import Prompt from "./Components/Prompt/Prompt";
 import PasswordReset from "./Components/PasswordReset/PasswordReset";
 import NewPassword from "./Components/NewPassword/NewPassword";
+import UserAccount from "./Components/UserAccount/UserAccount";
 
 function App() {
   const expenseContext = useContext(ExpenseContext);
@@ -43,6 +44,7 @@ function App() {
             path="/api/user/resetpassword/:id/:token"
             component={NewPassword}
           />
+          <Route exact path="/user/account" component={UserAccount} />
         </AuthState>
       </Switch>
     </div>

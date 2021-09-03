@@ -1,0 +1,89 @@
+.user-account-con {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.user-account {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 40%;
+  background-color: rgba(255, 255, 255, 0.151);
+  box-shadow: 4px 4px 20px #000, -4px -4px 20px #000;
+  border-radius: 5px;
+}
+.user-account .input-item h1 {
+  padding: 0 0 1rem 0;
+  border-bottom: 1px solid #fff;
+}
+.user-account .input-item {
+  margin: auto;
+  width: 90%;
+  margin: 2rem 0 0 0;
+}
+.user-account .input-item label {
+  margin: 5px 0;
+}
+.user-account .input-item input {
+  padding: 10px 8px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  color: #ccc;
+  background-color: #111;
+}
+.user-account .input-item input:focus {
+  border: 1px solid rgb(0, 191, 255);
+}
+.user-account .title {
+  width: 100%;
+  background-color: rgb(0, 191, 255);
+  text-align: center;
+  padding: 1.5rem 0;
+}
+.user-account .title h1 {
+  color: #fff;
+  font-weight: 300;
+}
+.user-account button {
+  margin: 2rem 0;
+  color: #fff;
+  background-color: rgb(0, 191, 255);
+}
+.user-account .change-pass {
+  cursor: pointer;
+  margin: 2rem 0 0 0;
+  font-weight: 300;
+  font-size: 15px;
+  color: rgb(85, 213, 255);
+  border-bottom: 1px rgb(85, 213, 255) solid;
+  transition: all 0.2s;
+}
+.user-account .btn-con {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 0;
+}
+.user-account .btn-con button {
+  margin: 5px 0;
+}
+.user-account .btn-con button:nth-child(2) {
+  background: red;
+}
+.user-account .change-pass:hover {
+  transform: scale(1.2);
+}
+.user-account .input-item h1 {
+  color: #fff;
+  font-weight: 300;
+}
+@media (max-width: 650px) {
+  .user-account {
+    width: 90%;
+  }
+  .user-account .title h1 {
+    font-size: 1.5rem;
+  }
+}

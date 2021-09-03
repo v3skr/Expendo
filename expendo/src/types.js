@@ -15,3 +15,4 @@ export const SET_PROPMT = "SET_PROPMT";
 export const TOGGLE_OVERLAY = "TOGGLE_OVERLAY";
 export const SET_TYPE = "SET_TYPE";
 export const SET_PAYLOAD = "SET_PAYLOAD";
+export const SET_USER = "SET_USER";
