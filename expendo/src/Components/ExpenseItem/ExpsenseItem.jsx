@@ -52,7 +52,7 @@ const ExpsenseItem = ({ expense, id }) => {
                 onChange={onChange}
               />
             ) : (
-              date
+              new Date(date).toDateString()
             )}
           </h1>
         </div>

@@ -51,6 +51,9 @@ const ExpenseState = (props) => {
   const res = (type) => {
     togglePrompt(false);
     switch (type) {
+      default: {
+        return;
+      }
       case DELETE: {
         return deleteExpense(state.payload.id, state.payload._id);
       }

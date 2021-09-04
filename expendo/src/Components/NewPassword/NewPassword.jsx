@@ -13,6 +13,7 @@ const NewPassword = (props) => {
       if (res === false) return history.push("/");
     }
     fetchData();
+    //eslint-disable-next-line
   }, []);
   const authContext = useContext(AuthContext);
   const { changePass, validateLink } = authContext;

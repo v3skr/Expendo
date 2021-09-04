@@ -6,7 +6,6 @@ const connectDB = () => {
   try {
     mongoose.connect(process.env.db, {
       useNewUrlParser: true,
-      useNewUrlParser: true,
       useUnifiedTopology: true,
     });
     console.log("db connected");

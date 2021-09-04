@@ -1,4 +1,4 @@
-import React, { Fragment, useContext } from "react";
+import React, { useContext } from "react";
 import "./Navbar.css";
 import ExpenseContext from "../../../Context/ExpenseContext/ExpenseContext";
 import { REMOVE_TOKEN } from "../../../types";
@@ -12,7 +12,7 @@ const Navbar = () => {
     <div className="nav">
       <h1>EXPENDO</h1>
       {history.location.pathname !== "/" && (
-        <div className = "con">
+        <div className="con">
           <div className="burger">
             <div></div>
             <div></div>

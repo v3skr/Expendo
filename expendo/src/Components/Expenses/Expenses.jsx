@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { Fragment, useContext, useEffect } from "react";
 import "./Expenses.css";
 import ExpenseList from "./ExpenseList";
 import Footer from "../Footer/Footer";
@@ -13,16 +13,21 @@ const Expenses = () => {
       await loadExpenses();
     }
     call();
+    //eslint-disable-next-line
   }, []);
   return (
     <div className="expenses-con">
       {loading ? (
         <Loading />
       ) : (
-        <div className="expenses">
-          {expenses.length > 0 && <h1 className="main-title">Your Expenses</h1>}
-          <ExpenseList style={{ overflow: "hidden" }} />
-        </div>
+        <Fragment>
+          <div className="expenses">
+            {expenses.length > 0 && (
+              <h1 className="main-title">Your Expenses</h1>
+            )}
+            <ExpenseList style={{ overflow: "hidden" }} />
+          </div>
+        </Fragment>
       )}
       <Footer />
     </div>

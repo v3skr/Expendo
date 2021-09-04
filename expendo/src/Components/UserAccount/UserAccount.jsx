@@ -15,6 +15,7 @@ const UserAccount = () => {
       await getUserInfo();
     }
     fetchData();
+    //eslint-disable-next-line
   }, []);
   const [state, setState] = useState({
     Email: "",
