@@ -2,10 +2,10 @@ const express = require("express");
 const bcrypt = require("bcryptjs");
 const User = require("../models/User");
 const jwt = require("jsonwebtoken");
-const app = express();
-app.use(express.json());
+const router = express.Router();
+router.use(express.json());
 
-app.post("/", async (req, res) => {
+router.post("/", async (req, res) => {
   try {
     const { Email, password } = req.body;
     let user = await User.findOne({ Email, type: "err" })
@@ -27,4 +27,4 @@ app.post("/", async (req, res) => {
   }
 });
 
-module.exports = app;
+module.exports = router;

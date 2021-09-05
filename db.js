@@ -8,7 +8,6 @@ const connectDB = () => {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
-    console.log("db connected");
   } catch (err) {
     console.log(err.message);
   }
