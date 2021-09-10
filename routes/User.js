@@ -50,7 +50,7 @@ router.put("/", UserAuth, async (req, res) => {
     }
     if (newUser.isPasswordChange) {
       const salt = await bcrypt.genSalt(10);
-      const newPassword = await bcrypt.hash(newUser.password, salt);
+      const newPassword = await bcrypt.hash(newUser.password2, salt);
       newUser.password = newPassword;
     }
     !newUser.isPasswordChange && delete newUser.password;

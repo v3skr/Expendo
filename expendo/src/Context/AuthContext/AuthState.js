@@ -147,6 +147,7 @@ const AuthState = (props) => {
     }
   };
   const updateAccount = async (newUser) => {
+    console.log(newUser);
     const userSchema1 = joi.object({
       Email: joi.string().email().required(),
       phone: joi.string().min(11).max(11).required(),
