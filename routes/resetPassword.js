@@ -52,7 +52,7 @@ router.post("/", async (req, res) => {
       type: "info",
     });
   } catch (err) {
-    res.josn({ msg: err.message, type: "err" });
+    res.json({ msg: err.message, type: "err" });
   }
 });
 
