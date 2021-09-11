@@ -17,4 +17,4 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.resolve(__dirname, "expendo", "build", "index.html"));
   });
 }
-app.listen(port);
+app.listen(port, () => console.log("srever on port: " + port));

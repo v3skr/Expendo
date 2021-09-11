@@ -28,9 +28,14 @@ router.post("/", async (req, res) => {
       host: "smtp.gmail.com",
       port: 587,
       secure: false,
+      service: "gmail",
       auth: {
+        type: "OAuth2",
         user: process.env.Email,
         pass: process.env.Email_Password,
+        clientId: process.env.Client_id,
+        clientSecret: process.env.Client_sercret,
+        refreshToken: process.env.Refresh_Token,
       },
       tls: {
         rejectUnauthorized: false,
@@ -38,7 +43,7 @@ router.post("/", async (req, res) => {
     });
 
     let info = await transporter.sendMail({
-      from: "mousavi.hesam1234@gmail.com",
+      from: process.env.Email,
       to: Email,
       subject: "Password Reset",
       html: `<div>
