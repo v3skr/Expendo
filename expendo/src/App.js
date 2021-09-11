@@ -41,7 +41,7 @@ function App() {
           <Route exact path="/user/passwordreset" component={PasswordReset} />
           <Route
             exact
-            path="/api/user/resetpassword/:id/:token"
+            path="/user/newpassword/:id/:token"
             component={NewPassword}
           />
           <Route exact path="/user/account" component={UserAccount} />
