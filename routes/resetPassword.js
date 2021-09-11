@@ -11,45 +11,49 @@ require("dotenv").config();
 
 //Post request to Send Password Reset Email containing Link
 router.post("/", async (req, res) => {
-  const { Email } = req.body;
-  const user = await User.findOne({ Email }).select("-__v").select("-phone");
-  if (!user) return res.json({ msg: "Emai Not Found", type: "err" });
-  const payload = {
-    id: user._id,
-  };
-  const token = jwt.sign(
-    payload,
-    process.env.PasswordResetSecret + user.password,
-    { expiresIn: "10m" }
-  );
-  const link = `http://localhost:3000/api/user/resetpassword/${user._id}/${token}`;
-  let transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 587,
-    secure: false,
-    auth: {
-      user: process.env.Email,
-      pass: process.env.Email_Password,
-    },
-    tls: {
-      rejectUnauthorized: false,
-    },
-  });
+  try {
+    const { Email } = req.body;
+    const user = await User.findOne({ Email }).select("-__v").select("-phone");
+    if (!user) return res.json({ msg: "Emai Not Found", type: "err" });
+    const payload = {
+      id: user._id,
+    };
+    const token = jwt.sign(
+      payload,
+      process.env.PasswordResetSecret + user.password,
+      { expiresIn: "10m" }
+    );
+    const link = `http://localhost:3000/api/user/resetpassword/${user._id}/${token}`;
+    let transporter = nodemailer.createTransport({
+      host: "smtp.gmail.com",
+      port: 587,
+      secure: false,
+      auth: {
+        user: process.env.Email,
+        pass: process.env.Email_Password,
+      },
+      tls: {
+        rejectUnauthorized: false,
+      },
+    });
 
-  let info = await transporter.sendMail({
-    from: "mousavi.hesam1234@gmail.com",
-    to: Email,
-    subject: "Password Reset",
-    html: `<div>
-      <h1>Passwrord Reset</h1>
-      <p>Reset Your Password : <a href = ${link}>Click Here To Change Password</a></p>
-    </div>`,
-  });
-  nodemailer.getTestMessageUrl(info);
-  res.json({
-    msg: "Email Sent, Check Your Inbox For Instructions",
-    type: "info",
-  });
+    let info = await transporter.sendMail({
+      from: "mousavi.hesam1234@gmail.com",
+      to: Email,
+      subject: "Password Reset",
+      html: `<div>
+        <h1>Passwrord Reset</h1>
+        <p>Reset Your Password : <a href = ${link}>Click Here To Change Password</a></p>
+      </div>`,
+    });
+    nodemailer.getTestMessageUrl(info);
+    res.json({
+      msg: "Email Sent, Check Your Inbox For Instructions",
+      type: "info",
+    });
+  } catch (err) {
+    res.josn({ msg: err.message, type: "err" });
+  }
 });
 
 //Checks if link is valid
