@@ -23,7 +23,7 @@ router.post("/", async (req, res) => {
       process.env.PasswordResetSecret + user.password,
       { expiresIn: "10m" }
     );
-    const link = `http://localhost:3000/api/user/resetpassword/${user._id}/${token}`;
+    const link = `https://damp-atoll-51223.herokuapp.com/api/user/resetpassword/${user._id}/${token}`;
     let transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
       port: 587,
