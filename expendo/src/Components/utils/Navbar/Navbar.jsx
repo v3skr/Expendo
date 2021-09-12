@@ -11,7 +11,7 @@ const Navbar = () => {
   return (
     <div className="nav">
       <h1>EXPENDO</h1>
-      {history.location.pathname !== "/" && (
+      {localStorage.token && (
         <div className="con">
           <div className="burger">
             <div></div>

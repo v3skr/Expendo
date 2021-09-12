@@ -46,6 +46,7 @@ const AuthState = (props) => {
     dsipatch({ type: SET_USER, payload: res.data.msg });
   };
   const userRegister = async (user) => {
+    user.Email = user.Email.toLowerCase().trim();
     const userRegisterSchema = joi.object({
       Email: joi.string().required().email(),
       password: joi.string().required().min(6),
@@ -65,6 +66,7 @@ const AuthState = (props) => {
   };
 
   const userLogin = async (user) => {
+    user.Email = user.Email.toLowerCase().trim();
     const userLoginSchema = joi.object({
       Email: joi.string().email().required(),
       password: joi.string().min(6).required(),
@@ -95,6 +97,7 @@ const AuthState = (props) => {
       return setAlert({ type: "err", message: message, id: uuid() });
     }
     setLoading();
+    Email = Email.toLowerCase();
     const res = await axios.post("/api/user/resetpassword", { Email });
     setAlert({ message: res.data.msg, type: res.data.type, id: uuid() });
     history.push("/");
@@ -147,7 +150,7 @@ const AuthState = (props) => {
     }
   };
   const updateAccount = async (newUser) => {
-    console.log(newUser);
+    newUser.Email = newUser.Email.toLowerCase().trim();
     const userSchema1 = joi.object({
       Email: joi.string().email().required(),
       phone: joi.string().min(11).max(11).required(),

@@ -18,12 +18,12 @@ const PasswordReset = () => {
       <div className="password-reset-con">
         <div className="password-reset">
           <h2 className="title">
-            Enter The Email Assocaited With Your Account
+            Enter The Email Address Assocaited With Your Account
           </h2>
           <div className="input-item">
             <div className="label-con">
               <label className="label" htmlFor="Email">
-                Enter Password
+                Enter Email
               </label>
             </div>
             <input

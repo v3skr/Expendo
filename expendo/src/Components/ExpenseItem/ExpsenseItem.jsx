@@ -15,6 +15,7 @@ const ExpsenseItem = ({ expense, id }) => {
     isEdit,
     _id,
   });
+  console.log(date.slice(0, 10));
   const onChange = (e) => {
     setState({ ...state, [e.target.name]: e.target.value });
   };
@@ -48,7 +49,7 @@ const ExpsenseItem = ({ expense, id }) => {
               <EditInput
                 name="date"
                 type="date"
-                value={state.date}
+                value={state.date.slice(0, 10)}
                 onChange={onChange}
               />
             ) : (
